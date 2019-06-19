@@ -1,0 +1,15 @@
+#!/bin/bash
+
+PARAM_NUM=1
+
+if [[ $# != ${PARAM_NUM} ]]; then
+  echo "Error: parameter num is not ${PARAM_NUM}"
+  echo "USAGE: `basename $0` <time_suffix>"
+  exit -1
+fi
+
+TIME_SUFFIX=$1
+/root/ossutil64 cp oss://ccit-proofread-bucket/api-jar-upload/ProofreadAPI.jar oss://ccit-proofread-bucket/api-jar-upload/ProofreadAPI.jar.${TIME_SUFFIX}
+echo "ProofreadAPI.jar => ProofreadAPI.jar.${TIME_SUFFIX}"
+echo "===============================" 
+
