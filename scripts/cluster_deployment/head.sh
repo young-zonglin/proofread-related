@@ -16,7 +16,7 @@ SCALA_FOLDER=scala-2.11.8
 SPARK_PATH=${software_dir}/spark
 SPARK_FOLDER=spark-2.1.0-bin-hadoop2.6
 
-HADOOP_TMP_DIR=/var/hadoop
+HADOOP_TMP_DIR=${HOME}/var/hadoop
 
 # 修改集群节点
 MASTER_NODE=amaxsrv06
