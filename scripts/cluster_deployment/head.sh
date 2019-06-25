@@ -4,6 +4,8 @@
 USER=hadoop
 software_dir=${HOME}/software/
 
+cluster_deployment_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )"  && pwd )"
+
 # 相关软件的目录和文件夹名
 JDK_PATH=${software_dir}/jdk
 JDK_FOLDER=jdk1.7.0_15

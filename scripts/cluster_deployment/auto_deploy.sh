@@ -38,12 +38,17 @@ stop-all.sh
 ${SPARK_PATH}/${SPARK_FOLDER}/sbin/stop-all.sh
 
 # 打包压缩，压缩包会自动覆盖同名压缩包
-tar czf ${JDK_PATH}/${JDK_FOLDER}.tgz ${JDK_PATH}/${JDK_FOLDER}
-tar czf ${HADOOP_PATH}/${HADOOP_FOLDER}.tgz ${HADOOP_PATH}/${HADOOP_FOLDER}
-tar czf ${SCALA_PATH}/${SCALA_FOLDER}.tgz ${SCALA_PATH}/${SCALA_FOLDER}
-tar czf ${SPARK_PATH}/${SPARK_FOLDER}.tgz ${SPARK_PATH}/${SPARK_FOLDER}
+cd ${JDK_PATH}/
+tar czf ${JDK_FOLDER}.tgz ${JDK_FOLDER}
+cd ${HADOOP_PATH}/
+tar czf ${HADOOP_FOLDER}.tgz ${HADOOP_FOLDER}
+cd ${SCALA_PATH}/
+tar czf ${SCALA_FOLDER}.tgz ${SCALA_FOLDER}
+cd ${SPARK_PATH}/
+tar czf ${SPARK_FOLDER}.tgz ${SPARK_FOLDER}
 echo '============打包压缩完毕============'
 
+cd ${cluster_deployment_dir}
 for slave_node in ${SLAVE_NODE_LIST}
 do
 	# 在各个节点上创建目录
