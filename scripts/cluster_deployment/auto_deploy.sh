@@ -84,25 +84,25 @@ done
 for node in ${MASTER_NODE} ${SLAVE_NODE_LIST}
 do
     # 删除压缩包
-    ssh ${USER}@${slave_node} "test -e ${JDK_PATH}/${JDK_FOLDER}.tgz && rm -f ${JDK_PATH}/${JDK_FOLDER}.tgz"
-    ssh ${USER}@${slave_node} "test -e ${HADOOP_PATH}/${HADOOP_FOLDER}.tgz && rm -f ${HADOOP_PATH}/${HADOOP_FOLDER}.tgz"
-    ssh ${USER}@${slave_node} "test -e ${SCALA_PATH}/${SCALA_FOLDER}.tgz && rm -f ${SCALA_PATH}/${SCALA_FOLDER}.tgz"
-    ssh ${USER}@${slave_node} "test -e ${SPARK_PATH}/${SPARK_FOLDER}.tgz && rm -f ${SPARK_PATH}/${SPARK_FOLDER}.tgz"
+    ssh ${USER}@${node} "test -e ${JDK_PATH}/${JDK_FOLDER}.tgz && rm -f ${JDK_PATH}/${JDK_FOLDER}.tgz"
+    ssh ${USER}@${node} "test -e ${HADOOP_PATH}/${HADOOP_FOLDER}.tgz && rm -f ${HADOOP_PATH}/${HADOOP_FOLDER}.tgz"
+    ssh ${USER}@${node} "test -e ${SCALA_PATH}/${SCALA_FOLDER}.tgz && rm -f ${SCALA_PATH}/${SCALA_FOLDER}.tgz"
+    ssh ${USER}@${node} "test -e ${SPARK_PATH}/${SPARK_FOLDER}.tgz && rm -f ${SPARK_PATH}/${SPARK_FOLDER}.tgz"
 
     # 改变文件夹的所属用户
-    ssh ${USER}@${slave_node} "chown -R ${USER}:${USER} ${HADOOP_PATH}/${HADOOP_FOLDER}"
-    ssh ${USER}@${slave_node} "chown -R ${USER}:${USER} ${SPARK_PATH}/${SPARK_FOLDER}"
+    ssh ${USER}@${node} "chown -R ${USER}:${USER} ${HADOOP_PATH}/${HADOOP_FOLDER}"
+    ssh ${USER}@${node} "chown -R ${USER}:${USER} ${SPARK_PATH}/${SPARK_FOLDER}"
 
      # 删除hadoop和spark的log目录下的日志文件
-    ssh ${USER}@${slave_node} "test -d ${HADOOP_PATH}/${HADOOP_FOLDER} && rm -fr ${HADOOP_PATH}/${HADOOP_FOLDER}/logs/*"
-    ssh ${USER}@${slave_node} "test -d ${SPARK_PATH}/${SPARK_FOLDER} && rm -fr ${SPARK_PATH}/${SPARK_FOLDER}/logs/*"
+    ssh ${USER}@${node} "test -d ${HADOOP_PATH}/${HADOOP_FOLDER} && rm -fr ${HADOOP_PATH}/${HADOOP_FOLDER}/logs/*"
+    ssh ${USER}@${node} "test -d ${SPARK_PATH}/${SPARK_FOLDER} && rm -fr ${SPARK_PATH}/${SPARK_FOLDER}/logs/*"
 
     # 创建/var/hadoop目录
-    ssh ${USER}@${slave_node} "mkdir -p ${HADOOP_TMP_DIR}"
-    ssh ${USER}@${slave_node} "chmod 777 ${HADOOP_TMP_DIR}"
-    ssh ${USER}@${slave_node} "test -d ${HADOOP_TMP_DIR} && rm -fr ${HADOOP_TMP_DIR}/*"
+    ssh ${USER}@${node} "mkdir -p ${HADOOP_TMP_DIR}"
+    ssh ${USER}@${node} "chmod 777 ${HADOOP_TMP_DIR}"
+    ssh ${USER}@${node} "test -d ${HADOOP_TMP_DIR} && rm -fr ${HADOOP_TMP_DIR}/*"
 
-    ssh ${USER}@${slave_node} "source ${HADOOP_PATH}/${HADOOP_FOLDER}/etc/hadoop/hadoop-env.sh"
+    ssh ${USER}@${node} "source ${HADOOP_PATH}/${HADOOP_FOLDER}/etc/hadoop/hadoop-env.sh"
 done
 
 # 格式化Hadoop集群
