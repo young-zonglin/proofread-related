@@ -21,11 +21,13 @@ if [[ $HOSTNAME != ${MASTER_NODE} ]]; then
 	exit -2
 fi
 
-stop-all.sh
+stop-dfs.sh
+stop-yarn.sh
 for node in ${MASTER_NODE} ${SLAVE_NODE_LIST}
 do
 	ssh ${USER}@${node} "test -d ${HADOOP_TMP_DIR} && rm -fr ${HADOOP_TMP_DIR}/*"
 	echo "===========${node}节点格式化完毕==========="
 done
-hadoop namenode -format
-start-all.sh
+hdfs namenode -format
+start-dfs.sh
+start-yarn.sh

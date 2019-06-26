@@ -34,7 +34,8 @@ part1_sh=deploy_part1.sh
 part2_sh=deploy_part2.sh
 
 # 停止Hadoop和Spark集群
-stop-all.sh
+stop-dfs.sh
+stop-yarn.sh
 ${SPARK_PATH}/${SPARK_FOLDER}/sbin/stop-all.sh
 
 # 打包压缩，压缩包会自动覆盖同名压缩包
@@ -97,19 +98,18 @@ do
     ssh ${USER}@${node} "test -d ${HADOOP_PATH}/${HADOOP_FOLDER} && rm -fr ${HADOOP_PATH}/${HADOOP_FOLDER}/logs/*"
     ssh ${USER}@${node} "test -d ${SPARK_PATH}/${SPARK_FOLDER} && rm -fr ${SPARK_PATH}/${SPARK_FOLDER}/logs/*"
 
-    # 创建/var/hadoop目录
+    # 创建${hadoop.tmp.dir}目录
     ssh ${USER}@${node} "mkdir -p ${HADOOP_TMP_DIR}"
     ssh ${USER}@${node} "chmod 777 ${HADOOP_TMP_DIR}"
     ssh ${USER}@${node} "test -d ${HADOOP_TMP_DIR} && rm -fr ${HADOOP_TMP_DIR}/*"
-
-    ssh ${USER}@${node} "source ${HADOOP_PATH}/${HADOOP_FOLDER}/etc/hadoop/hadoop-env.sh"
 done
 
 # 格式化Hadoop集群
-hadoop namenode -format
+hdfs namenode -format
 
 # 开启Hadoop和Spark集群
-start-all.sh
+start-dfs.sh
+start-yarn.sh
 ${SPARK_PATH}/${SPARK_FOLDER}/sbin/start-all.sh
 
 # 测试Hadoop和Spark集群
