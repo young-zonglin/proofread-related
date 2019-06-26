@@ -100,9 +100,9 @@ do
     ssh ${USER}@${node} "test -d ${SPARK_PATH}/${SPARK_FOLDER} && rm -fr ${SPARK_PATH}/${SPARK_FOLDER}/logs/*"
 
     # 创建${hadoop.tmp.dir}目录
-    ssh ${USER}@${node} "mkdir -p ${HADOOP_TMP_DIR}"
-    ssh ${USER}@${node} "chmod 777 ${HADOOP_TMP_DIR}"
-    ssh ${USER}@${node} "test -d ${HADOOP_TMP_DIR} && rm -fr ${HADOOP_TMP_DIR}/*"
+    ssh ${USER}@${node} "mkdir -p ${HADOOP_USED_DIR}"
+    ssh ${USER}@${node} "chmod 777 ${HADOOP_USED_DIR}"
+    ssh ${USER}@${node} "test -d ${HADOOP_USED_DIR} && rm -fr ${HADOOP_USED_DIR}/*"
 done
 
 # 格式化Hadoop集群
@@ -112,8 +112,4 @@ hdfs namenode -format
 start-dfs.sh
 start-yarn.sh
 ${SPARK_PATH}/${SPARK_FOLDER}/sbin/start-all.sh
-
-# 测试Hadoop和Spark集群
-bash hadoop_pi.sh
-bash spark_pi.sh
 

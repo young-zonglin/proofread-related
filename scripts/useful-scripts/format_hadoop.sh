@@ -25,7 +25,7 @@ stop-dfs.sh
 stop-yarn.sh
 for node in ${MASTER_NODE} ${SLAVE_NODE_LIST}
 do
-	ssh ${USER}@${node} "test -d ${HADOOP_TMP_DIR} && rm -fr ${HADOOP_TMP_DIR}/*"
+	ssh ${USER}@${node} "test -d ${HADOOP_USED_DIR} && rm -fr ${HADOOP_USED_DIR}/*"
 	echo "===========${node}节点格式化完毕==========="
 done
 hdfs namenode -format
