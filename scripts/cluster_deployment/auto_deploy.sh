@@ -46,6 +46,7 @@ tar czf ${HADOOP_FOLDER}.tgz ${HADOOP_FOLDER}
 cd ${SCALA_PATH}/
 tar czf ${SCALA_FOLDER}.tgz ${SCALA_FOLDER}
 cd ${SPARK_PATH}/
+test -e ${SPARK_FOLDER}/work && rm -fr ${SPARK_FOLDER}/work
 tar czf ${SPARK_FOLDER}.tgz ${SPARK_FOLDER}
 echo '============打包压缩完毕============'
 
