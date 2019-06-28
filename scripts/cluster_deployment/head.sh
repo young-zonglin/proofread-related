@@ -20,4 +20,4 @@ HADOOP_USED_DIR=${HOME}/var/hadoop
 
 # 修改集群节点
 MASTER_NODE=amaxsrv06
-SLAVE_NODE_LIST="amaxsrv03"
+SLAVE_NODE_LIST="amaxsrv03 amaxsrv07"
