@@ -23,12 +23,6 @@ if [[ $HOSTNAME != ${MASTER_NODE} ]]; then
 	exit -2
 fi
 
-if [[ ${USER} == root ]]; then
-    env_file=/etc/profile
-else
-    env_file=/home/${USER}/.bashrc
-fi
-
 # 在从节点执行的部署脚本
 part1_sh=deploy_part1.sh
 part2_sh=deploy_part2.sh

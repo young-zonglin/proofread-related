@@ -2,8 +2,13 @@
 
 # 在这里修改用户
 USER=hadoop
-software_dir=${HOME}/software/
+if [[ ${USER} == root ]]; then
+    env_file=/etc/profile
+else
+    env_file=/home/${USER}/.bashrc
+fi
 
+software_dir=${HOME}/software/
 cluster_deployment_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )"  && pwd )"
 
 # 相关软件的目录和文件夹名
