@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "确定执行`basename $0`吗？这将会更新集群各个节点的配置信息"
+echo "确定执行`basename $0`吗？这将会更新集群各从节点的配置信息"
 echo "yes | no"
 read flag
 if [[ ${flag} != "yes" ]]; then
