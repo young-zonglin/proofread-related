@@ -9,8 +9,9 @@ if [[ $HOSTNAME != ${MASTER_NODE} ]]; then
 	exit -1
 fi
 
+proofread_config=~/proofread_swjtu/proofread_config/
 for slave_node in ${SLAVE_NODE_LIST}
 do
-    ssh ${USER}@${slave_node} "mkdir -p ~/proofread_swjtu/proofread_config"
-    scp ~/proofread_swjtu/proofread_config/* ${USER}@${slave_node}:~/proofread_swjtu/proofread_config/
+    ssh ${USER}@${slave_node} "mkdir -p ${proofread_config}"
+    scp ${proofread_config}/* ${USER}@${slave_node}:${proofread_config}/
 done

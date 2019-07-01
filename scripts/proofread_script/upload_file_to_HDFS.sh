@@ -1,12 +1,13 @@
 #!/bin/bash
 
-HADOOP_HOME=$1
-path=$2
-filename=$3
-monitorDir=$4
-tempDir=$5
+source ../cluster_deployment/head.sh
 
-${HADOOP_HOME}/bin/hdfs dfs -put ${path}${filename} ${tempDir}${filename}
-${HADOOP_HOME}/bin/hdfs dfs -mv ${tempDir}${filename} ${monitorDir}${filename}
+path=$1
+filename=$2
 
-test -e ${path}${filename} && rm -f ${path}${filename}
+HADOOP_HOME=${HADOOP_PATH}/${HADOOP_FOLDER}
+
+${HADOOP_HOME}/bin/hdfs dfs -put ${path}/${filename} ${temp_dir}/${filename}
+${HADOOP_HOME}/bin/hdfs dfs -mv ${temp_dir}/${filename} ${monitor_dir}/${filename}
+
+test -e ${path}/${filename} && rm -f ${path}/${filename}

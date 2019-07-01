@@ -2,12 +2,10 @@
 
 source ../cluster_deployment/head.sh
 
-jar=${HOME}/ProofreadAPI.jar
+api_jar=${HOME}/ProofreadAPI.jar
 HADOOP_HOME=${HADOOP_PATH}/${HADOOP_FOLDER}
 SPARK_HOME=${SPARK_PATH}/${SPARK_FOLDER}
-monitor_dir="hdfs://${MASTER_NODE}:9000/user/${USER}/proofread_monitor"
-temp_dir="hdfs://${MASTER_NODE}:9000/user/${USER}/proofread_temp"
-batchDuration=10
+batch_duration=10
 
 ${HADOOP_HOME}/bin/hdfs dfs -mkdir -p ${monitor_dir}
 ${HADOOP_HOME}/bin/hdfs dfs -mkdir -p ${temp_dir}
@@ -22,8 +20,7 @@ nohup ${SPARK_HOME}/bin/spark-submit \
     --executor-memory 20g \
     --driver-memory 2g \
     --class com.swjtu.ccit.Service.parallel.StreamingProofread \
-    $jar 1>out.file 2>err.file &
-#$monitorDir $batchDuration \
+    ${api_jar} ${monitor_dir} ${batch_duration} 1>out.file 2>err.file &
 
 #--driver-java-options -XX:+UseConcMarkSweepGC \
 #--conf spark.executor.extraJavaOptions=-XX:+UseConcMarkSweepGC \

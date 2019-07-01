@@ -26,3 +26,7 @@ HADOOP_USED_DIR=${HOME}/var/hadoop
 # 修改集群节点
 MASTER_NODE=amaxsrv06
 SLAVE_NODE_LIST="amaxsrv03 amaxsrv07"
+
+monitor_dir="hdfs://${MASTER_NODE}:9000/user/${USER}/proofread_monitor"
+temp_dir="hdfs://${MASTER_NODE}:9000/user/${USER}/proofread_temp"
+

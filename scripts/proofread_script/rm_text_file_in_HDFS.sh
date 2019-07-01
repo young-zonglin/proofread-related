@@ -1,8 +1,9 @@
 #!/bin/bash
 
-HADOOP_HOME=$1
-filename=$2
-monitorDir=$3
+source ../cluster_deployment/head.sh
 
-${HADOOP_HOME}/bin/hdfs dfs -rm ${monitorDir}${filename}
+HADOOP_HOME=${HADOOP_PATH}/${HADOOP_FOLDER}
+filename=$1
+
+${HADOOP_HOME}/bin/hdfs dfs -rm ${monitor_dir}/${filename}
 
