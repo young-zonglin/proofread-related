@@ -15,3 +15,4 @@ fi
 
 ${TOMCAT_HOME}/bin/startup.sh
 
+echo 'restart tomcat web service at '`date` >> ~/proofread_swjtu/tomcat_restart.log

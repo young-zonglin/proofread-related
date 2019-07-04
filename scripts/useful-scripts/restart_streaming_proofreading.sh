@@ -14,3 +14,4 @@ fi
 cd ${shell_scripts_dir}
 bash streaming_proofread.sh
 
+echo 'restart streaming proofreading service at '`date` >> ~/proofread_swjtu/proofreading_restart.log
